@@ -1,21 +1,52 @@
 @import 'partitions/dirt-colors';
 @import 'partitions/wood-colors';
 @import 'partitions/leaf-colors';
+@import 'modules/keyframes';
 
-*, *::before, *::after { box-sizing: border-box }
+*, *::before, *::after { -webkit-box-sizing: border-box; box-sizing: border-box }
+
+:root {
+
+	--sky-blue: #00b1e8;
+	--sky-night: #201e23;
+}
+
+@font-face {
+	font-family: minecraft;
+	src: url('../../font/minecraft-regular.otf');
+}
 
 body {
 	margin: 0;
-	background-color: #00b1e8;
+	background-color: var(--sky-blue);
+	font-family: minecraft; 
+	color: white;
 	overflow: hidden;
+}
+
+h2, p {
+	margin: 0;
 }
 
 main {
 	width: 100vw;
 	height: 100vh;
 	display: grid;
-	place-content: center;
+	grid-template-rows: .4fr 1fr;
+	justify-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	position: relative;
+}
+
+#info {
+	z-index: 2;
+	-ms-flex-item-align: center;
+	    align-self: center;
+	text-align: center;
+	font-size: 2.5em;
+	text-shadow: .1em .1em 0 var(--sky-night);
 }
 
 .floating {
@@ -23,12 +54,89 @@ main {
 	position: absolute;
 }
 
+#nightmode-toggle {
+	bottom: 2em;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	        transform: translateX(-50%);
+	padding: .5em 2em;
+	border: 2px solid white;
+	border-radius: 5px;
+	background-color: transparent;
+	cursor: pointer;
+	-webkit-transition:
+		background-color 150ms ease-in,
+		color 150ms ease-in;
+	transition:
+		background-color 150ms ease-in,
+		color 150ms ease-in;
+		
+	&:hover {
+		background-color: white;
+		color: var(--sky-night);
+	}
+}
+
+#moon,
+.star {
+	display: none;
+}
+
+#moon {
+	top: 0;
+	left: 0;
+	-webkit-transform: translate(700%, 275%);
+	        transform: translate(700%, 275%);
+}
+
+.star {
+	z-index: 0;
+	-webkit-animation-name: star-animation;
+	        animation-name: star-animation;
+	animation-direction: alternate-reverse;
+	-webkit-animation-iteration-count: infinite;
+	        animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease-in;
+	        animation-timing-function: ease-in;
+	-webkit-animation-duration: 1200ms;
+	        animation-duration: 1200ms;
+	-webkit-filter: none;
+	        filter: none;
+}
+
+.star-color {
+	fill: rgb(150, 150, 150);
+}
+
+.cloud {
+	-webkit-animation-name: cloud-animation;
+	        animation-name: cloud-animation;
+	animation-direction: alternate-reverse;
+	-webkit-animation-iteration-count: infinite;
+	        animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease-in;
+	        animation-timing-function: ease-in;
+	-webkit-animation-duration: 750ms;
+	        animation-duration: 750ms;
+
+	&:nth-of-type(1) {
+		-webkit-animation-delay: 320ms;
+		        animation-delay: 320ms;
+	}
+
+	&:nth-of-type(3) {
+		-webkit-animation-delay: 240ms;
+		        animation-delay: 240ms;
+	}
+}
+
 #cloud-1 {
 	width: 272px;
 	height: 112px;
 	top: 0;
 	left: 0;
-	transform: translate(150%, 200%);
+	-webkit-transform: translate(150%, 200%);
+	        transform: translate(150%, 200%);
 	background-image: url('../../assets/svg/cloud-1.svg');
 }
 
@@ -37,59 +145,75 @@ main {
 	height: 88px;
 	top: 0;
 	right: 0;
-	transform: translate(-175%, 375%);
+	-webkit-transform: translate(-175%, 375%);
+	        transform: translate(-175%, 375%);
 	background-image: url('../../assets/svg/cloud-2.svg');
 }
 
 #cloud-3 {
 	width: 208px;
 	height: 80px;
-	bottom: 0;
+	top: 0;
 	left: 0;
-	transform: translate(300%, -275%);
+	-webkit-transform: translate(300%, 800%);
+	        transform: translate(300%, 800%);
 	background-image: url('../../assets/svg/cloud-3.svg');
 }
 
 #blocks {
+	align-self: baseline;
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	position: relative;
-	filter: contrast(115%);
+	-webkit-filter: contrast(115%);
+	        filter: contrast(115%);
 
-	&__leaf-1 {
+	#leaf-1 {
 		grid-column: 5
 	}
 
-	&__leaf-3 {
+	#leaf-3 {
 		grid-column: 4
 	}
 
-	&__wood-1,
-	&__wood-2 {
+	#wood-1,
+	#wood-2 {
 		grid-column: 5 / 7
 	}
 
-	&__dirt-7 {
+	#dirt-7 {
 		grid-column: 2
 	}
 
 	// Floating Items
 
-	&__chest {
+	#chest {
 		width: 72px;
-		height: 72px;
-		top: 0;
+		height: 112px;
+		top: 176px;
 		left: 0;
-		transform: translate(200%, 300%);
-		background-image: url('../../assets/svg/chest-closed.svg');
+		text-align: center;
+		padding: .5em .2em;
+		-webkit-transform: translateX(200%);
+		        transform: translateX(200%);
+		background-image: url('../../assets/svg/chest-closed.svg'),
+						  url('../../assets/svg/chest-open.svg');
+		background-repeat: no-repeat;
+		background-position: bottom, bottom;
+		clip-path: inset(40px 0px 0px 0px);
+		-webkit-transition: -webkit-transform 200ms ease-in;
+		transition: -webkit-transform 200ms ease-in;
+		transition: transform 200ms ease-in;
+		transition: transform 200ms ease-in, -webkit-transform 200ms ease-in;
 	}
 
-	&__crazyminer {
+	#crazyminer {
 		width: 72px;
 		height: 72px;
 		top: 0;
 		left: 0;
-		transform: translateY(300%);
+		-webkit-transform: translateY(300%);
+		        transform: translateY(300%);
 		background-image: url('../../assets/svg/crazyminer-1.svg');
 		background-repeat: no-repeat;
 		background-position: bottom;

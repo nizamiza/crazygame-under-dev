@@ -1663,30 +1663,135 @@
 .leaf-5-53 {
   fill: #2B641B; }
 
+@-webkit-keyframes cloud-animation {
+  to {
+    top: 4px; } }
+
+@keyframes cloud-animation {
+  to {
+    top: 4px; } }
+
+@-webkit-keyframes star-animation {
+  to {
+    -webkit-filter: brightness(1200%);
+    filter: brightness(1200%); } }
+
+@keyframes star-animation {
+  to {
+    -webkit-filter: brightness(1200%);
+    filter: brightness(1200%); } }
+
 *, *::before, *::after {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
+
+:root {
+  --sky-blue: #00b1e8;
+  --sky-night: #201e23; }
+
+@font-face {
+  font-family: minecraft;
+  src: url("../../font/minecraft-regular.otf"); }
 
 body {
   margin: 0;
-  background-color: #00b1e8;
+  background-color: var(--sky-blue);
+  font-family: minecraft;
+  color: white;
   overflow: hidden; }
+
+h2, p {
+  margin: 0; }
 
 main {
   width: 100vw;
   height: 100vh;
   display: grid;
-  place-content: center;
+  grid-template-rows: .4fr 1fr;
+  justify-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   position: relative; }
+
+#info {
+  z-index: 2;
+  -ms-flex-item-align: center;
+  align-self: center;
+  text-align: center;
+  font-size: 2.5em;
+  text-shadow: 0.1em 0.1em 0 var(--sky-night); }
 
 .floating {
   z-index: 1;
   position: absolute; }
+
+#nightmode-toggle {
+  bottom: 2em;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  padding: .5em 2em;
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  -webkit-transition: background-color 150ms ease-in, color 150ms ease-in;
+  transition: background-color 150ms ease-in, color 150ms ease-in; }
+  #nightmode-toggle:hover {
+    background-color: white;
+    color: var(--sky-night); }
+
+#moon,
+.star {
+  display: none; }
+
+#moon {
+  top: 0;
+  left: 0;
+  -webkit-transform: translate(700%, 275%);
+  transform: translate(700%, 275%); }
+
+.star {
+  z-index: 0;
+  -webkit-animation-name: star-animation;
+  animation-name: star-animation;
+  animation-direction: alternate-reverse;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in;
+  animation-timing-function: ease-in;
+  -webkit-animation-duration: 1200ms;
+  animation-duration: 1200ms;
+  -webkit-filter: none;
+  filter: none; }
+
+.star-color {
+  fill: #969696; }
+
+.cloud {
+  -webkit-animation-name: cloud-animation;
+  animation-name: cloud-animation;
+  animation-direction: alternate-reverse;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in;
+  animation-timing-function: ease-in;
+  -webkit-animation-duration: 750ms;
+  animation-duration: 750ms; }
+  .cloud:nth-of-type(1) {
+    -webkit-animation-delay: 320ms;
+    animation-delay: 320ms; }
+  .cloud:nth-of-type(3) {
+    -webkit-animation-delay: 240ms;
+    animation-delay: 240ms; }
 
 #cloud-1 {
   width: 272px;
   height: 112px;
   top: 0;
   left: 0;
+  -webkit-transform: translate(150%, 200%);
   transform: translate(150%, 200%);
   background-image: url("../../assets/svg/cloud-1.svg"); }
 
@@ -1695,42 +1800,58 @@ main {
   height: 88px;
   top: 0;
   right: 0;
+  -webkit-transform: translate(-175%, 375%);
   transform: translate(-175%, 375%);
   background-image: url("../../assets/svg/cloud-2.svg"); }
 
 #cloud-3 {
   width: 208px;
   height: 80px;
-  bottom: 0;
+  top: 0;
   left: 0;
-  transform: translate(300%, -275%);
+  -webkit-transform: translate(300%, 800%);
+  transform: translate(300%, 800%);
   background-image: url("../../assets/svg/cloud-3.svg"); }
 
 #blocks {
+  align-self: baseline;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   position: relative;
+  -webkit-filter: contrast(115%);
   filter: contrast(115%); }
-  #blocks__leaf-1 {
+  #blocks #leaf-1 {
     grid-column: 5; }
-  #blocks__leaf-3 {
+  #blocks #leaf-3 {
     grid-column: 4; }
-  #blocks__wood-1, #blocks__wood-2 {
+  #blocks #wood-1,
+  #blocks #wood-2 {
     grid-column: 5 / 7; }
-  #blocks__dirt-7 {
+  #blocks #dirt-7 {
     grid-column: 2; }
-  #blocks__chest {
+  #blocks #chest {
+    width: 72px;
+    height: 112px;
+    top: 176px;
+    left: 0;
+    text-align: center;
+    padding: .5em .2em;
+    -webkit-transform: translateX(200%);
+    transform: translateX(200%);
+    background-image: url("../../assets/svg/chest-closed.svg"), url("../../assets/svg/chest-open.svg");
+    background-repeat: no-repeat;
+    background-position: bottom, bottom;
+    clip-path: inset(40px 0px 0px 0px);
+    -webkit-transition: -webkit-transform 200ms ease-in;
+    transition: -webkit-transform 200ms ease-in;
+    transition: transform 200ms ease-in;
+    transition: transform 200ms ease-in, -webkit-transform 200ms ease-in; }
+  #blocks #crazyminer {
     width: 72px;
     height: 72px;
     top: 0;
     left: 0;
-    transform: translate(200%, 300%);
-    background-image: url("../../assets/svg/chest-closed.svg"); }
-  #blocks__crazyminer {
-    width: 72px;
-    height: 72px;
-    top: 0;
-    left: 0;
+    -webkit-transform: translateY(300%);
     transform: translateY(300%);
     background-image: url("../../assets/svg/crazyminer-1.svg");
     background-repeat: no-repeat;
@@ -1738,40 +1859,66 @@ main {
 
 @media only screen and (max-width: 1366px) {
   #cloud-1 {
+    -webkit-transform: translate(50%, 125%);
     transform: translate(50%, 125%); }
   #cloud-2 {
+    -webkit-transform: translate(-75%, 300%);
     transform: translate(-75%, 300%); }
   #cloud-3 {
-    transform: translate(150%, -200%); } }
+    -webkit-transform: translate(150%, 800%);
+    transform: translate(150%, 800%); } }
 
 @media only screen and (max-width: 830px) {
+  #moon {
+    -webkit-transform: translate(100%, 275%);
+    transform: translate(100%, 275%); }
   #cloud-1 {
+    -webkit-transform: translate(50%, 50%);
     transform: translate(50%, 50%); }
   #cloud-2 {
+    -webkit-transform: translate(-25%, 200%);
     transform: translate(-25%, 200%); }
   #cloud-3 {
     display: none; }
   #blocks {
     grid-template-columns: repeat(4, 1fr); }
-    #blocks__chest {
-      transform: translate(100%, 300%); }
-    #blocks__leaf-1 {
+    #blocks #chest {
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%); }
+    #blocks #leaf-1 {
       grid-column: 3; }
-    #blocks__leaf-3 {
+    #blocks #leaf-3 {
       grid-column: 2; }
-    #blocks__wood-1, #blocks__wood-2 {
+    #blocks #wood-1,
+    #blocks #wood-2 {
       grid-column: 3 / 5; }
-    #blocks__dirt-5, #blocks__dirt-6, #blocks__dirt-7, #blocks__dirt-10 {
+    #blocks #dirt-5,
+    #blocks #dirt-6,
+    #blocks #dirt-7,
+    #blocks #dirt-10 {
       display: none; }
-    #blocks__dirt-8 {
-      grid-column: 2; } }
+    #blocks #dirt-3 {
+      grid-row: 5;
+      grid-column: 2; }
+    #blocks #dirt-8 {
+      grid-row: 6;
+      grid-column: 2; }
+    #blocks #dirt-2 {
+      grid-column: 3; }
+    #blocks #dirt-9 {
+      grid-column: 3; } }
 
 @media only screen and (max-width: 420px) {
+  #moon {
+    -webkit-transform: translate(100%, 275%);
+    transform: translate(100%, 275%); }
   #cloud-1 {
+    -webkit-transform: translate(25%, 25%);
     transform: translate(25%, 25%); }
   #cloud-2 {
     display: none; } }
 
 @media only screen and (max-width: 345px) {
   #cloud-1 {
+    -webkit-transform: translate(0%, 25%);
     transform: translate(0%, 25%); } }

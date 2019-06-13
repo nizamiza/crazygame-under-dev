@@ -1,0 +1,15 @@
+@-webkit-keyframes cloud-animation {
+	to { top: 4px }
+}
+
+@keyframes cloud-animation {
+	to { top: 4px }
+}
+
+@-webkit-keyframes star-animation {
+	to { -webkit-filter: brightness(1200%); filter: brightness(1200%) }
+}
+
+@keyframes star-animation {
+	to { -webkit-filter: brightness(1200%); filter: brightness(1200%) }
+}

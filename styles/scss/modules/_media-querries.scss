@@ -1,26 +1,36 @@
 @media only screen and (max-width: 1366px) {
 
 	#cloud-1 {
-		transform: translate(50%, 125%);
+		-webkit-transform: translate(50%, 125%);
+		        transform: translate(50%, 125%);
 	}
 	
 	#cloud-2 {
-		transform: translate(-75%, 300%);
+		-webkit-transform: translate(-75%, 300%);
+		        transform: translate(-75%, 300%);
 	}
 	
 	#cloud-3 {
-		transform: translate(150%, -200%);
+		-webkit-transform: translate(150%, 800%);
+		        transform: translate(150%, 800%);
 	}
 }
 
 @media only screen and (max-width: 830px) {
 
+	#moon {
+		-webkit-transform: translate(100%, 275%);
+		        transform: translate(100%, 275%);
+	}
+
 	#cloud-1 {
-		transform: translate(50%, 50%);
+		-webkit-transform: translate(50%, 50%);
+		        transform: translate(50%, 50%);
 	}
 	
 	#cloud-2 {
-		transform: translate(-25%, 200%);
+		-webkit-transform: translate(-25%, 200%);
+		        transform: translate(-25%, 200%);
 	}
 	
 	#cloud-3 {
@@ -31,40 +41,61 @@
 
 		grid-template-columns: repeat(4, 1fr);
 
-		&__chest {
-			transform: translate(100%, 300%);
+		#chest {
+			-webkit-transform: translateX(100%);
+			        transform: translateX(100%);
 		}
 
-		&__leaf-1 {
+		#leaf-1 {
 			grid-column: 3
 		}
 	
-		&__leaf-3 {
+		#leaf-3 {
 			grid-column: 2
 		}
 	
-		&__wood-1,
-		&__wood-2 {
+		#wood-1,
+		#wood-2 {
 			grid-column: 3 / 5
 		}
 
-		&__dirt-5,
-		&__dirt-6,
-		&__dirt-7,
-		&__dirt-10 {
+		#dirt-5,
+		#dirt-6,
+		#dirt-7,
+		#dirt-10 {
 			display: none
 		}
-	
-		&__dirt-8 {
-			grid-column: 2
+
+		#dirt-3 {
+			grid-row: 5;
+			grid-column: 2;
+		}
+
+		#dirt-8 {
+			grid-row: 6;
+			grid-column: 2;
+		}
+
+		#dirt-2 {
+			grid-column: 3
+		}
+
+		#dirt-9 {
+			grid-column: 3
 		}
 	}
 }
 
 @media only screen and (max-width: 420px) {
 
+	#moon {
+		-webkit-transform: translate(100%, 275%);
+		        transform: translate(100%, 275%);
+	}
+
 	#cloud-1 {
-		transform: translate(25%, 25%);
+		-webkit-transform: translate(25%, 25%);
+		        transform: translate(25%, 25%);
 	}
 
 	#cloud-2 {
@@ -75,6 +106,7 @@
 @media only screen and (max-width: 345px) {
 
 	#cloud-1 {
-		transform: translate(0%, 25%);
+		-webkit-transform: translate(0%, 25%);
+		        transform: translate(0%, 25%);
 	}
 }
