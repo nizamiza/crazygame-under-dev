@@ -1,0 +1,99 @@
+@import 'partitions/dirt-colors';
+@import 'partitions/wood-colors';
+@import 'partitions/leaf-colors';
+
+*, *::before, *::after { box-sizing: border-box }
+
+body {
+	margin: 0;
+	background-color: #00b1e8;
+	overflow: hidden;
+}
+
+main {
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	place-content: center;
+	position: relative;
+}
+
+.floating {
+	z-index: 1;
+	position: absolute;
+}
+
+#cloud-1 {
+	width: 272px;
+	height: 112px;
+	top: 0;
+	left: 0;
+	transform: translate(150%, 200%);
+	background-image: url('../../assets/svg/cloud-1.svg');
+}
+
+#cloud-2 {
+	width: 288px;
+	height: 88px;
+	top: 0;
+	right: 0;
+	transform: translate(-175%, 375%);
+	background-image: url('../../assets/svg/cloud-2.svg');
+}
+
+#cloud-3 {
+	width: 208px;
+	height: 80px;
+	bottom: 0;
+	left: 0;
+	transform: translate(300%, -275%);
+	background-image: url('../../assets/svg/cloud-3.svg');
+}
+
+#blocks {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	position: relative;
+	filter: contrast(115%);
+
+	&__leaf-1 {
+		grid-column: 5
+	}
+
+	&__leaf-3 {
+		grid-column: 4
+	}
+
+	&__wood-1,
+	&__wood-2 {
+		grid-column: 5 / 7
+	}
+
+	&__dirt-7 {
+		grid-column: 2
+	}
+
+	// Floating Items
+
+	&__chest {
+		width: 72px;
+		height: 72px;
+		top: 0;
+		left: 0;
+		transform: translate(200%, 300%);
+		background-image: url('../../assets/svg/chest-closed.svg');
+	}
+
+	&__crazyminer {
+		width: 72px;
+		height: 72px;
+		top: 0;
+		left: 0;
+		transform: translateY(300%);
+		background-image: url('../../assets/svg/crazyminer-1.svg');
+		background-repeat: no-repeat;
+		background-position: bottom;
+	}
+}
+
+@import 'modules/media-querries';
